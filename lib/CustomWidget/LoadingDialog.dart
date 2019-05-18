@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../Model/ArticleData.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
-
 class LoadingDialog extends Dialog {
   String text;
   LoadingDialog({Key key, @required this.text}) : super(key: key);
@@ -16,7 +15,8 @@ class LoadingDialog extends Dialog {
         borderRadius: BorderRadius.all(Radius.circular(2.0)));
 
     return AnimatedPadding(
-      padding: MediaQuery.of(context).viewInsets + const EdgeInsets.symmetric(horizontal: 40.0, vertical: 24.0),
+      padding: MediaQuery.of(context).viewInsets +
+          const EdgeInsets.symmetric(horizontal: 40.0, vertical: 24.0),
       duration: insetAnimationDuration,
       curve: insetAnimationCurve,
       child: MediaQuery.removeViewInsets(
@@ -54,8 +54,6 @@ class LoadingDialog extends Dialog {
   }
 }
 
-
-
 class ArticleDialog extends Dialog {
   ArticleData article;
   ArticleDialog({Key key, @required this.article}) : super(key: key);
@@ -68,12 +66,15 @@ class ArticleDialog extends Dialog {
     RoundedRectangleBorder _defaultDialogShape = RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(2.0)));
 
-    var desc1 = article.desc1.replaceAllMapped(RegExp(r'<p>|</p>'), (Match match) => '');
+    var desc1 = article.desc1
+        .replaceAllMapped(RegExp(r'<p>|</p>'), (Match match) => '');
     desc1 = desc1.replaceAllMapped(RegExp('<br>'), (Match match) => '\n');
-    final desc2 = article.desc2.replaceAllMapped(RegExp(r'<p>|</p>'), (Match match) => '');
+    final desc2 = article.desc2
+        .replaceAllMapped(RegExp(r'<p>|</p>'), (Match match) => '');
 
     return AnimatedPadding(
-      padding: MediaQuery.of(context).viewInsets + const EdgeInsets.symmetric(horizontal: 80.0, vertical: 24.0),
+      padding: MediaQuery.of(context).viewInsets +
+          const EdgeInsets.symmetric(horizontal: 80.0, vertical: 24.0),
       duration: insetAnimationDuration,
       curve: insetAnimationCurve,
       child: MediaQuery.removeViewInsets(
@@ -85,8 +86,8 @@ class ArticleDialog extends Dialog {
         child: Center(
           child: Material(
             elevation: 24.0,
-            color: Colors.black.withOpacity(0.95),
-            type: MaterialType.transparency,
+            color: Colors.black.withOpacity(0.9),
+            type: MaterialType.card,
             child: new Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -104,7 +105,8 @@ class ArticleDialog extends Dialog {
                       placeholder: (BuildContext context, String url) {
                         return CircularProgressIndicator();
                       },
-                      errorWidget: (BuildContext context, String url, Object error) {
+                      errorWidget:
+                          (BuildContext context, String url, Object error) {
                         return Icon(Icons.error_outline);
                       },
                     ),
@@ -113,14 +115,28 @@ class ArticleDialog extends Dialog {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Text("  出售价格："+article.sellPrice, style: TextStyle(color: Theme.of(context).primaryColor),),
-                        Text("  购买价格："+article.buyPrice, style: TextStyle(color: Theme.of(context).primaryColor),),
+                        Text(
+                          "  出售价格：" + article.sellPrice,
+                          style:
+                              TextStyle(color: Theme.of(context).primaryColor),
+                        ),
+                        Text(
+                          "  购买价格：" + article.buyPrice,
+                          style:
+                              TextStyle(color: Theme.of(context).primaryColor),
+                        ),
                       ],
                     )
                   ],
                 ),
-                Text("\n"+desc1, style: TextStyle(color: Theme.of(context).primaryColor),),
-                Text('\n'+desc2, style: TextStyle(color: Theme.of(context).primaryColor),),
+                Text(
+                  "\n" + desc1,
+                  style: TextStyle(color: Theme.of(context).primaryColorDark),
+                ),
+                Text(
+                  '\n' + desc2,
+                  style: TextStyle(color: Theme.of(context).primaryColorDark),
+                ),
               ],
             ),
             shape: _defaultDialogShape,

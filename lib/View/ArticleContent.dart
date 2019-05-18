@@ -4,7 +4,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import '../Net/Net.dart';
 import '../CustomWidget/LoadingDialog.dart';
 
-
 class ArticleContent extends StatefulWidget {
   ArticleContent({Key key}) : super(key: key);
   @override
@@ -14,7 +13,6 @@ class ArticleContent extends StatefulWidget {
 }
 
 class _ArticleContentState extends State<ArticleContent> {
-
   List<ArticleData> _articleList = [];
 
   @override
@@ -70,8 +68,8 @@ class _ArticleContentState extends State<ArticleContent> {
   }
 
   Widget listView() {
-    final width = (MediaQuery.of(context).size.width-40)/4;
-    final aspect = width/(width+20);
+    final width = (MediaQuery.of(context).size.width - 40) / 4;
+    final aspect = width / (width + 30);
     return GridView.builder(
       padding: EdgeInsets.all(5),
       itemCount: _articleList.length,
@@ -82,22 +80,21 @@ class _ArticleContentState extends State<ArticleContent> {
           crossAxisCount: 4,
           mainAxisSpacing: 10,
           crossAxisSpacing: 10,
-          childAspectRatio: aspect
-      ),
+          childAspectRatio: aspect),
     );
   }
 
   void showDetail(ArticleData aritcle) {
     print(aritcle.desc1);
     showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return ArticleDialog(article: aritcle);
-      });
+        context: context,
+        builder: (BuildContext context) {
+          return ArticleDialog(article: aritcle);
+        });
   }
 
   @override
   Widget build(BuildContext context) {
-    return _articleList.length==0?loading():listView();
+    return _articleList.length == 0 ? loading() : listView();
   }
 }

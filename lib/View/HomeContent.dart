@@ -5,7 +5,6 @@ import '../Router/AppRouter.dart';
 import 'package:fluro/fluro.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
-
 class HomeContent extends StatefulWidget {
   HomeContent({Key key}) : super(key: key);
   @override
@@ -15,7 +14,6 @@ class HomeContent extends StatefulWidget {
 }
 
 class _HomeContentState extends State<HomeContent> {
-
   List<HeroData> _heroList = [];
 
   @override
@@ -33,9 +31,9 @@ class _HomeContentState extends State<HomeContent> {
       onTap: () {
         Application.router.navigateTo(
             context,
-            Uri.encodeFull('/hero_info?href=${hero.href.replaceAll('/', '`')}&name=${hero.name}&infoHref=${hero.infoHref.replaceAll('/', '`')}&number=${hero.number}'),
-            transition: TransitionType.native
-        );
+            Uri.encodeFull(
+                '/hero_info?href=${hero.href.replaceAll('/', '`')}&name=${hero.name}&infoHref=${hero.infoHref.replaceAll('/', '`')}&number=${hero.number}'),
+            transition: TransitionType.native);
       },
       child: Column(
         children: <Widget>[
@@ -75,8 +73,8 @@ class _HomeContentState extends State<HomeContent> {
   }
 
   Widget listView() {
-    final width = (MediaQuery.of(context).size.width-40)/4;
-    final aspect = width/(width+20);
+    final width = (MediaQuery.of(context).size.width - 40) / 4;
+    final aspect = width / (width + 30);
     return GridView.builder(
       padding: EdgeInsets.all(5),
       itemCount: _heroList.length,
@@ -87,13 +85,12 @@ class _HomeContentState extends State<HomeContent> {
           crossAxisCount: 4,
           mainAxisSpacing: 10,
           crossAxisSpacing: 10,
-          childAspectRatio: aspect
-      ),
+          childAspectRatio: aspect),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return _heroList.length==0? loading() : listView();
+    return _heroList.length == 0 ? loading() : listView();
   }
 }

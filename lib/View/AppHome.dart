@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import '../View/HomeContent.dart';
 import '../View/ArticleContent.dart';
 
-
 class AppHome extends StatefulWidget {
-  AppHome({Key key}): super(key: key);
+  AppHome({Key key}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
     return _AppHomeState();
@@ -12,7 +11,6 @@ class AppHome extends StatefulWidget {
 }
 
 class _AppHomeState extends State<AppHome> {
-  
 //  var _itemWidth = (MediaQueryData.fromWindow(window).size.width - 40)/3;
 //  var _itemWidth = (GlobalKey().currentContext.size.width - 40)/3;
 
@@ -47,32 +45,31 @@ class _AppHomeState extends State<AppHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(_getCurrentTitle(), style: TextStyle(color: Colors.white),),
+      appBar: AppBar(
+        title: Text(
+          _getCurrentTitle(),
+          style: TextStyle(color: Colors.white),
         ),
-        body: _getCurrentContent(),
+      ),
+      body: _getCurrentContent(),
       bottomNavigationBar: BottomNavigationBar(
-        unselectedItemColor: Colors.grey,
-        selectedItemColor: Colors.white,
-        backgroundColor: Theme.of(context).primaryColor,
+        fixedColor: Colors.orange,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home,),
-            title: Text(
-              '英雄'
-            )
-          ),
+              icon: Icon(
+                Icons.home,
+              ),
+              title: Text('英雄')),
           BottomNavigationBarItem(
-              icon: Icon(Icons.apps,),
-              title: Text(
-                  '物品'
-              )
-          ),
+              icon: Icon(
+                Icons.apps,
+              ),
+              title: Text('物品')),
         ],
         currentIndex: _currentTabbarIndex,
         onTap: (int index) {
           setState(() {
-            _currentTabbarIndex=index;
+            _currentTabbarIndex = index;
           });
         },
       ),
